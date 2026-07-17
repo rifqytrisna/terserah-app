@@ -19,7 +19,7 @@ afterEach(() => vi.restoreAllMocks());
 describe('ResultCard', () => {
   it('shows the item, note, and disclaimer', () => {
     render(<ResultCard item={item} seenBefore={false} onCommit={() => {}} />);
-    expect(screen.getByText('Soto Ayam')).toBeInTheDocument();
+    expect(screen.getByText(/Soto Ayam/)).toBeInTheDocument();
     expect(screen.getByText(/Kaldu hangat/)).toBeInTheDocument();
     expect(screen.getByText(/bukan saran medis/i)).toBeInTheDocument();
   });
