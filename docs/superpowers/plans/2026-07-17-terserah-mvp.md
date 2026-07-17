@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- **Runtime/tooling:** Node 25.x, npm 11.x (already installed). Package manager: **npm**.
+- **Runtime/tooling:** Node 25.x. Package manager: **pnpm** (9.10.0 installed). Use pnpm for all commands; do not commit an `package-lock.json` (pnpm writes `pnpm-lock.yaml`).
 - **TypeScript strict mode: ON** (`"strict": true` in tsconfig).
 - **Layout:** mobile-first; app content constrained to `max-w-md mx-auto` and centered on larger screens.
 - **Wheel invariant:** at most **8** segments per spin (`WHEEL_SIZE = 8`); segments are **real item names** sampled from the active phase; **re-sample every spin**; **exclude the previous result** when sampling the next spin; if a phase has fewer than 8 items, show all available.
@@ -76,7 +76,7 @@
 
 - [ ] **Step 2: Install dependencies**
 
-Run: `npm install`
+Run: `pnpm install`
 Expected: completes without error; `node_modules/` created (already gitignored).
 
 - [ ] **Step 3: Create config files**
@@ -223,7 +223,7 @@ test('renders the app header', () => {
 
 - [ ] **Step 5: Run the test to verify it fails**
 
-Run: `npm test -- src/App.test.tsx`
+Run: `ppnpm test src/App.test.tsx`
 Expected: FAIL — `App` has no such text yet (or module/render error).
 
 - [ ] **Step 6: Write minimal `src/App.tsx`**
@@ -240,12 +240,12 @@ export default function App() {
 
 - [ ] **Step 7: Run the test to verify it passes**
 
-Run: `npm test -- src/App.test.tsx`
+Run: `ppnpm test src/App.test.tsx`
 Expected: PASS.
 
 - [ ] **Step 8: Verify the build works**
 
-Run: `npm run build`
+Run: `pnpm build`
 Expected: `tsc -b` passes with no type errors; `vite build` emits `dist/`.
 
 - [ ] **Step 9: Commit**
@@ -399,7 +399,7 @@ describe('validateDataset', () => {
 
 - [ ] **Step 4: Run the test to verify it fails**
 
-Run: `npm test -- src/data/validateDataset.test.ts`
+Run: `ppnpm test src/data/validateDataset.test.ts`
 Expected: FAIL — `validateDataset` not implemented.
 
 - [ ] **Step 5: Implement `src/data/validateDataset.ts`**
@@ -436,7 +436,7 @@ export function validateDataset(items: FoodItem[]): { ok: boolean; errors: strin
 
 - [ ] **Step 6: Run the test to verify it passes**
 
-Run: `npm test -- src/data/validateDataset.test.ts`
+Run: `ppnpm test src/data/validateDataset.test.ts`
 Expected: PASS (4 tests).
 
 - [ ] **Step 7: Commit**
@@ -536,7 +536,7 @@ describe('sampleWheel', () => {
 
 - [ ] **Step 2: Run the tests to verify they fail**
 
-Run: `npm test -- src/lib/sampleWheel.test.ts`
+Run: `ppnpm test src/lib/sampleWheel.test.ts`
 Expected: FAIL — module not found / functions undefined.
 
 - [ ] **Step 3: Implement `src/lib/sampleWheel.ts`**
@@ -580,7 +580,7 @@ export function sampleWheel(
 
 - [ ] **Step 4: Run the tests to verify they pass**
 
-Run: `npm test -- src/lib/sampleWheel.test.ts`
+Run: `ppnpm test src/lib/sampleWheel.test.ts`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -640,7 +640,7 @@ describe('openGoogleMapsSearch', () => {
 
 - [ ] **Step 2: Run the tests to verify they fail**
 
-Run: `npm test -- src/lib/navigation.test.ts`
+Run: `ppnpm test src/lib/navigation.test.ts`
 Expected: FAIL — module/functions undefined.
 
 - [ ] **Step 3: Implement `src/lib/navigation.ts`**
@@ -658,7 +658,7 @@ export function openGoogleMapsSearch(query: string): void {
 
 - [ ] **Step 4: Run the tests to verify they pass**
 
-Run: `npm test -- src/lib/navigation.test.ts`
+Run: `ppnpm test src/lib/navigation.test.ts`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -723,7 +723,7 @@ describe('historyStore', () => {
 
 - [ ] **Step 2: Run the tests to verify they fail**
 
-Run: `npm test -- src/lib/historyStore.test.ts`
+Run: `ppnpm test src/lib/historyStore.test.ts`
 Expected: FAIL — module/functions undefined.
 
 - [ ] **Step 3: Implement `src/lib/historyStore.ts`**
@@ -761,7 +761,7 @@ export function appendHistory(entry: HistoryEntry): HistoryEntry[] {
 
 - [ ] **Step 4: Run the tests to verify they pass**
 
-Run: `npm test -- src/lib/historyStore.test.ts`
+Run: `ppnpm test src/lib/historyStore.test.ts`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -850,7 +850,7 @@ describe('useFoods', () => {
 
 - [ ] **Step 3: Run the test to verify it fails**
 
-Run: `npm test -- src/data/useFoods.test.tsx`
+Run: `ppnpm test src/data/useFoods.test.tsx`
 Expected: FAIL — `useFoods` undefined.
 
 - [ ] **Step 4: Implement `src/data/useFoods.ts`**
@@ -874,7 +874,7 @@ export function useFoods(): UseQueryResult<FoodItem[], Error> {
 
 - [ ] **Step 5: Run the test to verify it passes**
 
-Run: `npm test -- src/data/useFoods.test.tsx`
+Run: `ppnpm test src/data/useFoods.test.tsx`
 Expected: PASS.
 
 - [ ] **Step 6: Wire persistence into `src/main.tsx`**
@@ -898,7 +898,7 @@ createRoot(document.getElementById('root')!).render(
 
 - [ ] **Step 7: Verify build and full test run**
 
-Run: `npm run build && npm test`
+Run: `pnpm build && pnpm test`
 Expected: build succeeds; all tests pass.
 
 - [ ] **Step 8: Commit**
@@ -957,7 +957,7 @@ describe('useHistory', () => {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `npm test -- src/data/useHistory.test.tsx`
+Run: `ppnpm test src/data/useHistory.test.tsx`
 Expected: FAIL — `useHistory` undefined.
 
 - [ ] **Step 3: Implement `src/data/useHistory.ts`**
@@ -996,7 +996,7 @@ export function useHistory(): {
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `npm test -- src/data/useHistory.test.tsx`
+Run: `ppnpm test src/data/useHistory.test.tsx`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -1050,7 +1050,7 @@ describe('PhaseTabs', () => {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `npm test -- src/components/PhaseTabs.test.tsx`
+Run: `ppnpm test src/components/PhaseTabs.test.tsx`
 Expected: FAIL — component undefined.
 
 - [ ] **Step 3: Implement `src/components/PhaseTabs.tsx`**
@@ -1090,7 +1090,7 @@ export default function PhaseTabs({ active, onChange }: PhaseTabsProps) {
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `npm test -- src/components/PhaseTabs.test.tsx`
+Run: `ppnpm test src/components/PhaseTabs.test.tsx`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -1177,7 +1177,7 @@ describe('SpinnerWheel', () => {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `npm test -- src/components/SpinnerWheel.test.tsx`
+Run: `ppnpm test src/components/SpinnerWheel.test.tsx`
 Expected: FAIL — component undefined.
 
 - [ ] **Step 3: Implement `src/components/SpinnerWheel.tsx`**
@@ -1260,7 +1260,7 @@ export default function SpinnerWheel({ items, phase, lastResultId, onResult }: S
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `npm test -- src/components/SpinnerWheel.test.tsx`
+Run: `ppnpm test src/components/SpinnerWheel.test.tsx`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -1336,7 +1336,7 @@ describe('ResultCard', () => {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `npm test -- src/components/ResultCard.test.tsx`
+Run: `ppnpm test src/components/ResultCard.test.tsx`
 Expected: FAIL — component undefined.
 
 - [ ] **Step 3: Implement `src/components/ResultCard.tsx`**
@@ -1381,7 +1381,7 @@ export default function ResultCard({ item, seenBefore, onCommit }: ResultCardPro
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `npm test -- src/components/ResultCard.test.tsx`
+Run: `ppnpm test src/components/ResultCard.test.tsx`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -1436,7 +1436,7 @@ describe('HistoryList', () => {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `npm test -- src/components/HistoryList.test.tsx`
+Run: `ppnpm test src/components/HistoryList.test.tsx`
 Expected: FAIL — component undefined.
 
 - [ ] **Step 3: Implement `src/components/HistoryList.tsx`**
@@ -1477,7 +1477,7 @@ export default function HistoryList({ entries }: HistoryListProps) {
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `npm test -- src/components/HistoryList.test.tsx`
+Run: `ppnpm test src/components/HistoryList.test.tsx`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
@@ -1572,7 +1572,7 @@ describe('App', () => {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `npm test -- src/App.test.tsx`
+Run: `ppnpm test src/App.test.tsx`
 Expected: FAIL — `App` still the placeholder; no tabs/wheel.
 
 - [ ] **Step 3: Implement `src/App.tsx`**
@@ -1639,12 +1639,12 @@ export default function App() {
 
 - [ ] **Step 4: Run the test to verify it passes**
 
-Run: `npm test -- src/App.test.tsx`
+Run: `ppnpm test src/App.test.tsx`
 Expected: PASS (2 tests).
 
 - [ ] **Step 5: Run the full suite and build**
 
-Run: `npm test && npm run build`
+Run: `pnpm test && pnpm build`
 Expected: all tests pass; build succeeds.
 
 - [ ] **Step 6: Commit**
@@ -1719,12 +1719,12 @@ Expected: three icon files exist in `public/`.
 
 - [ ] **Step 3: Build and confirm the service worker is generated**
 
-Run: `npm run build`
+Run: `pnpm build`
 Expected: build succeeds; `dist/sw.js` and `dist/manifest.webmanifest` are emitted.
 
 - [ ] **Step 4: Verify tests still pass**
 
-Run: `npm test`
+Run: `pnpm test`
 Expected: all tests pass (PWA plugin does not affect Vitest).
 
 - [ ] **Step 5: Commit**
@@ -1748,7 +1748,7 @@ git commit -m "feat: configure vite-plugin-pwa for offline-first install"
 
 - [ ] **Step 1: Manually verify the app end-to-end**
 
-Run: `npm run build && npm run preview`
+Run: `pnpm build && pnpm preview`
 Then in a browser at the shown localhost URL, confirm:
 - Header and 4 phase tabs render; active tab is bold.
 - Clicking "PUTAR" spins and reveals a result card with a wellness note and the "bukan saran medis" disclaimer.
@@ -1776,11 +1776,11 @@ persisted history and Google Maps deep links.
 ## Development
 
 ```bash
-npm install
-npm run dev      # start dev server
-npm test         # run tests
-npm run build    # type-check + production build
-npm run preview  # preview the production build
+pnpm install
+pnpm dev      # start dev server
+pnpm test         # run tests
+pnpm build    # type-check + production build
+pnpm preview  # preview the production build
 ```
 
 ## Data

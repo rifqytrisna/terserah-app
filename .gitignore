@@ -37,3 +37,6 @@ coverage/
 
 # PWA generated
 dev-dist/
+
+# Superpowers SDD scratch (briefs, reports, ledger)
+.superpowers/
