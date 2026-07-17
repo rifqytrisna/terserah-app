@@ -54,6 +54,7 @@ describe('App', () => {
     vi.useRealTimers();
 
     const cta = await screen.findByRole('button', { name: /google maps/i });
+    expect(screen.getByText(/📜 Riwayat Pilihan \(0\)/i)).toBeInTheDocument();
     await userEvent.click(cta);
 
     await waitFor(() =>
