@@ -1,6 +1,6 @@
 # 🍜 Terserah App (The Ultimate Relationship Saver)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://terserah-app.vercel.app)
+[![Demo with Vercel](https://vercel.com/button)](https://terserah-app.vercel.app)
 
 > "Mau makan apa?"
 > — **"Terserah."**
