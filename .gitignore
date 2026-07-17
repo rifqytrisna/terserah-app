@@ -41,3 +41,6 @@ dev-dist/
 
 # Superpowers SDD scratch (briefs, reports, ledger)
 .superpowers/
+
+# Vercel
+.vercel
