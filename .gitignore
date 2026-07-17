@@ -7,6 +7,7 @@ node_modules/
 dist/
 dist-ssr/
 *.local
+*.tsbuildinfo
 
 # Env
 .env
@@ -37,3 +38,9 @@ coverage/
 
 # PWA generated
 dev-dist/
+
+# Superpowers SDD scratch (briefs, reports, ledger)
+.superpowers/
+
+# Vercel
+.vercel
