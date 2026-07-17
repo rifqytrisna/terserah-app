@@ -1,7 +1,6 @@
 # 🍜 Terserah App (The Ultimate Relationship Saver)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://terserah-app.vercel.app)
-_(Ganti link di atas dengan URL live app kamu)_
 
 > "Mau makan apa?"
 > — **"Terserah."**
