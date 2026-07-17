@@ -1,49 +1,50 @@
 import '@testing-library/jest-dom';
 import { beforeEach } from 'vitest';
 
-// Create a mock localStorage if it doesn't exist or doesn't have the necessary methods
-class MockStorage {
-  private store: Record<string, string> = {};
+// Node 25's experimental Web Storage support installs a `localStorage` global
+// ahead of jsdom, but its methods (getItem/setItem/...) are undefined stubs
+// rather than a working implementation. jsdom would otherwise provide a real
+// Storage, but we can't rely on that across Node versions/CI runners. To keep
+// test behavior identical everywhere, we install this faithful in-memory
+// Storage implementation unconditionally, regardless of what globalThis
+// already has.
+class MockStorage implements Storage {
+  #store = new Map<string, string>();
 
   getItem(key: string): string | null {
-    return this.store[key] ?? null;
+    return this.#store.has(key) ? (this.#store.get(key) as string) : null;
   }
 
   setItem(key: string, value: string): void {
-    this.store[key] = value;
+    this.#store.set(key, String(value));
   }
 
   removeItem(key: string): void {
-    delete this.store[key];
+    this.#store.delete(key);
   }
 
   clear(): void {
-    this.store = {};
+    this.#store.clear();
   }
 
   key(index: number): string | null {
-    const keys = Object.keys(this.store);
-    return keys[index] ?? null;
+    return Array.from(this.#store.keys())[index] ?? null;
   }
 
   get length(): number {
-    return Object.keys(this.store).length;
+    return this.#store.size;
   }
 }
 
-// Only create mock if localStorage isn't properly implemented
-if (!globalThis.localStorage || typeof globalThis.localStorage.setItem !== 'function') {
-  Object.defineProperty(globalThis, 'localStorage', {
-    value: new MockStorage(),
-    writable: false,
-    enumerable: true,
-    configurable: true,
-  });
-}
+Object.defineProperty(globalThis, 'localStorage', {
+  value: new MockStorage(),
+  writable: false,
+  enumerable: true,
+  configurable: true,
+});
 
-// Reset localStorage before each test
+// Isolate localStorage between tests project-wide, so state from one test
+// file/case never leaks into the next.
 beforeEach(() => {
-  if (globalThis.localStorage && typeof globalThis.localStorage.clear === 'function') {
-    globalThis.localStorage.clear();
-  }
+  globalThis.localStorage.clear();
 });
