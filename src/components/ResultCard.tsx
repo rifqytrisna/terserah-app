@@ -7,6 +7,11 @@ export interface ResultCardProps {
   onCommit: (item: FoodItem) => void;
 }
 
+const TYPE_ICON: Record<FoodItem['type'], string> = {
+  makanan: '🍔',
+  minuman: '🍷',
+};
+
 export default function ResultCard({ item, seenBefore, onCommit }: ResultCardProps) {
   function handleCommit() {
     onCommit(item);
@@ -16,7 +21,7 @@ export default function ResultCard({ item, seenBefore, onCommit }: ResultCardPro
   return (
     <div className="rounded-xl bg-slate-50 p-4 text-center">
       <p className="text-xs uppercase tracking-wide text-slate-500">🎉 Hasil Putaran</p>
-      <p className="mt-1 text-lg font-bold text-slate-900">⭐ {item.name}</p>
+      <p className="mt-1 text-lg font-bold text-slate-900">{TYPE_ICON[item.type]} {item.name}</p>
       {seenBefore && (
         <span className="mt-1 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">
           Sudah pernah

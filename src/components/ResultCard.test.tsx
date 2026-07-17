@@ -24,6 +24,18 @@ describe('ResultCard', () => {
     expect(screen.getByText(/bukan saran medis/i)).toBeInTheDocument();
   });
 
+  it('shows the food icon for makanan and the drink icon for minuman', () => {
+    const { rerender } = render(
+      <ResultCard item={item} seenBefore={false} onCommit={() => {}} />
+    );
+    expect(screen.getByText(/🍔/)).toBeInTheDocument();
+
+    rerender(
+      <ResultCard item={{ ...item, type: 'minuman' }} seenBefore={false} onCommit={() => {}} />
+    );
+    expect(screen.getByText(/🍷/)).toBeInTheDocument();
+  });
+
   it('shows the "sudah pernah" badge only when seenBefore', () => {
     const { rerender } = render(
       <ResultCard item={item} seenBefore={false} onCommit={() => {}} />
