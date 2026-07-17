@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FoodItem, MenstrualPhase } from '../types/food';
 import { sampleWheel } from '../lib/sampleWheel';
 
@@ -15,6 +15,11 @@ export default function SpinnerWheel({ items, phase, lastResultId, onResult }: S
   const [segments, setSegments] = useState<FoodItem[]>([]);
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (timeoutRef.current !== null) clearTimeout(timeoutRef.current);
+  }, []);
 
   function handleSpin() {
     if (isSpinning) return;
@@ -23,16 +28,21 @@ export default function SpinnerWheel({ items, phase, lastResultId, onResult }: S
 
     const winnerIndex = Math.floor(Math.random() * wheel.length);
     const sliceDeg = 360 / wheel.length;
-    // Land the winner slice under the top pointer, after several full turns.
-    const target = 360 * 5 - (winnerIndex * sliceDeg + sliceDeg / 2);
+    // Land the winner slice under the top pointer, after several full turns
+    // forward from the current rotation (never backward).
+    const alignment = -(winnerIndex * sliceDeg + sliceDeg / 2);
+    const currentTurns = Math.floor(rotation / 360);
+    const target = (currentTurns + 5) * 360 + alignment;
 
     setSegments(wheel);
     setRotation(target);
     setIsSpinning(true);
 
-    window.setTimeout(() => {
+    if (timeoutRef.current !== null) clearTimeout(timeoutRef.current);
+    timeoutRef.current = window.setTimeout(() => {
       setIsSpinning(false);
       onResult(wheel[winnerIndex]);
+      timeoutRef.current = null;
     }, SPIN_MS);
   }
 

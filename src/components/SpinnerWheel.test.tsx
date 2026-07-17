@@ -19,7 +19,9 @@ beforeEach(() => {
   vi.spyOn(Math, 'random').mockReturnValue(0);
 });
 afterEach(() => {
-  vi.runOnlyPendingTimers();
+  act(() => {
+    vi.runOnlyPendingTimers();
+  });
   vi.useRealTimers();
   vi.restoreAllMocks();
 });
