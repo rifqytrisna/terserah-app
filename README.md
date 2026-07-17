@@ -24,6 +24,7 @@ The catalog lives at `public/data/foods.json`. Every phase must have at least
 To verify the app works end-to-end:
 
 1. Build and preview the production app:
+
    ```bash
    pnpm build
    pnpm preview

@@ -25,9 +25,7 @@ describe('ResultCard', () => {
   });
 
   it('shows the food icon for makanan and the drink icon for minuman', () => {
-    const { rerender } = render(
-      <ResultCard item={item} seenBefore={false} onCommit={() => {}} />
-    );
+    const { rerender } = render(<ResultCard item={item} seenBefore={false} onCommit={() => {}} />);
     expect(screen.getByText(/🍔/)).toBeInTheDocument();
 
     rerender(
@@ -37,9 +35,7 @@ describe('ResultCard', () => {
   });
 
   it('shows the "sudah pernah" badge only when seenBefore', () => {
-    const { rerender } = render(
-      <ResultCard item={item} seenBefore={false} onCommit={() => {}} />
-    );
+    const { rerender } = render(<ResultCard item={item} seenBefore={false} onCommit={() => {}} />);
     expect(screen.queryByText(/sudah pernah/i)).not.toBeInTheDocument();
     rerender(<ResultCard item={item} seenBefore={true} onCommit={() => {}} />);
     expect(screen.getByText(/sudah pernah/i)).toBeInTheDocument();

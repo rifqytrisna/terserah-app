@@ -5,7 +5,14 @@ import { useFoods } from './useFoods';
 import type { ReactNode } from 'react';
 
 const sample = [
-  { id: 'x', name: 'X', type: 'makanan', phases: ['menstruasi'], wellnessNote: 'n', gmapsQuery: 'q' },
+  {
+    id: 'x',
+    name: 'X',
+    type: 'makanan',
+    phases: ['menstruasi'],
+    wellnessNote: 'n',
+    gmapsQuery: 'q',
+  },
 ];
 
 function wrapper({ children }: { children: ReactNode }) {

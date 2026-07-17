@@ -44,17 +44,23 @@ export default function SpinnerWheel({ items, phase, lastResultId, onResult }: S
   const [rotation, setRotation] = useState(0);
   const timeoutRef = useRef<number | null>(null);
 
-  useEffect(() => () => {
-    if (timeoutRef.current !== null) clearTimeout(timeoutRef.current);
-  }, []);
+  // Refresh the preview wheel when the selected phase changes, computed
+  // during render rather than in an effect (avoids the extra cascading
+  // render effects cause): https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  const [sampledPhase, setSampledPhase] = useState(phase);
+  if (phase !== sampledPhase) {
+    setSampledPhase(phase);
+    if (!isSpinning) {
+      setSegments(sampleWheel(items, phase));
+    }
+  }
 
-  // Refresh the preview wheel when the selected phase changes (but never
-  // while an actual spin animation is in flight).
-  useEffect(() => {
-    if (isSpinning) return;
-    setSegments(sampleWheel(items, phase));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase]);
+  useEffect(
+    () => () => {
+      if (timeoutRef.current !== null) clearTimeout(timeoutRef.current);
+    },
+    []
+  );
 
   function handleSpin() {
     if (isSpinning) return;
@@ -111,7 +117,9 @@ export default function SpinnerWheel({ items, phase, lastResultId, onResult }: S
                 key={item.id}
                 data-testid="wheel-segment"
                 className="absolute left-1/2 top-1/2 max-w-[70px] truncate text-[10px] font-bold text-white"
-                style={{ transform: `translate(-50%, -50%) rotate(${bisector}deg) translateY(-105px)` }}
+                style={{
+                  transform: `translate(-50%, -50%) rotate(${bisector}deg) translateY(-105px)`,
+                }}
               >
                 {item.name}
               </span>

@@ -88,9 +88,7 @@ describe('SpinnerWheel', () => {
 
   it('renders at most WHEEL_SIZE segments after spinning', () => {
     const onResult = vi.fn();
-    render(
-      <SpinnerWheel items={makeItems(20)} phase="menstruasi" onResult={onResult} />
-    );
+    render(<SpinnerWheel items={makeItems(20)} phase="menstruasi" onResult={onResult} />);
     act(() => {
       screen.getByRole('button', { name: /putar/i }).click();
     });
@@ -99,9 +97,7 @@ describe('SpinnerWheel', () => {
 
   it('calls onResult with a sampled item after the animation', () => {
     const onResult = vi.fn();
-    render(
-      <SpinnerWheel items={makeItems(10)} phase="menstruasi" onResult={onResult} />
-    );
+    render(<SpinnerWheel items={makeItems(10)} phase="menstruasi" onResult={onResult} />);
     act(() => {
       screen.getByRole('button', { name: /putar/i }).click();
     });

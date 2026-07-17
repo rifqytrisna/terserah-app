@@ -7,10 +7,7 @@ describe('PhaseTabs', () => {
   it('renders all four phases and marks the active one', () => {
     render(<PhaseTabs active="ovulasi" onChange={() => {}} />);
     expect(screen.getByRole('tab', { name: /Menstruasi/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Ovulasi/i })).toHaveAttribute(
-      'aria-selected',
-      'true'
-    );
+    expect(screen.getByRole('tab', { name: /Ovulasi/i })).toHaveAttribute('aria-selected', 'true');
   });
 
   it('calls onChange with the clicked phase', async () => {

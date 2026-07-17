@@ -1,42 +1,322 @@
 [
-  { "id": "wedang-jahe", "name": "Wedang Jahe", "type": "minuman", "phases": ["menstruasi", "luteal"], "wellnessNote": "Jahe hangat dipercaya membantu meredakan kram.", "gmapsQuery": "wedang jahe terdekat" },
-  { "id": "soto-ayam", "name": "Soto Ayam", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Kaldu hangat dan protein untuk pulihkan tenaga.", "gmapsQuery": "soto ayam terdekat" },
-  { "id": "rendang", "name": "Rendang Daging", "type": "makanan", "phases": ["menstruasi"], "wellnessNote": "Daging merah, sumber zat besi untuk ganti darah haid.", "gmapsQuery": "rumah makan padang terdekat" },
-  { "id": "bubur-kacang-hijau", "name": "Bubur Kacang Hijau", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Kacang hijau kaya zat besi, disajikan hangat.", "gmapsQuery": "bubur kacang hijau terdekat" },
-  { "id": "kunyit-asam", "name": "Kunyit Asam", "type": "minuman", "phases": ["menstruasi"], "wellnessNote": "Kunyit dipercaya membantu redakan nyeri haid.", "gmapsQuery": "kunyit asam jamu terdekat" },
-  { "id": "sup-buntut", "name": "Sup Buntut", "type": "makanan", "phases": ["menstruasi"], "wellnessNote": "Sup hangat berkuah yang menenangkan saat haid.", "gmapsQuery": "sup buntut terdekat" },
-  { "id": "coklat-panas", "name": "Coklat Panas", "type": "minuman", "phases": ["menstruasi", "luteal"], "wellnessNote": "Coklat hangat untuk bantu angkat mood.", "gmapsQuery": "coklat panas cafe terdekat" },
-  { "id": "gulai-kambing", "name": "Gulai Kambing", "type": "makanan", "phases": ["menstruasi"], "wellnessNote": "Daging kambing sebagai sumber zat besi.", "gmapsQuery": "gulai kambing terdekat" },
-  { "id": "bandrek", "name": "Bandrek", "type": "minuman", "phases": ["menstruasi"], "wellnessNote": "Rempah hangat khas Sunda penghangat badan.", "gmapsQuery": "bandrek terdekat" },
-  { "id": "kolak-pisang", "name": "Kolak Pisang", "type": "makanan", "phases": ["menstruasi", "luteal"], "wellnessNote": "Hangat dan manis, pisang bersantan pengganjal.", "gmapsQuery": "kolak pisang terdekat" },
-  { "id": "bakso", "name": "Bakso", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Kuah hangat dengan protein yang mengenyangkan.", "gmapsQuery": "bakso terdekat" },
-  { "id": "telur-balado", "name": "Telur Balado", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Protein telur yang praktis dan mengenyangkan.", "gmapsQuery": "warung nasi telur balado terdekat" },
-  { "id": "wedang-uwuh", "name": "Wedang Uwuh", "type": "minuman", "phases": ["menstruasi", "luteal"], "wellnessNote": "Rempah hangat yang kaya antioksidan.", "gmapsQuery": "wedang uwuh terdekat" },
-  { "id": "sop-ayam", "name": "Sop Ayam", "type": "makanan", "phases": ["menstruasi", "luteal"], "wellnessNote": "Kuah bening hangat yang menenangkan.", "gmapsQuery": "sop ayam terdekat" },
-  { "id": "gado-gado", "name": "Gado-gado", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Sayur segar dengan tahu-tempe untuk energi ringan.", "gmapsQuery": "gado gado terdekat" },
-  { "id": "tempe-mendoan", "name": "Tempe Mendoan", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Tempe fermentasi sebagai protein nabati.", "gmapsQuery": "tempe mendoan terdekat" },
-  { "id": "salad-buah", "name": "Salad Buah", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Buah segar yang penuh vitamin.", "gmapsQuery": "salad buah terdekat" },
-  { "id": "nasi-pecel", "name": "Nasi Pecel", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Sayur rebus dan bumbu kacang, ringan bergizi.", "gmapsQuery": "nasi pecel terdekat" },
-  { "id": "yogurt-buah", "name": "Yogurt Buah", "type": "minuman", "phases": ["folikular"], "wellnessNote": "Probiotik yang bersahabat untuk pencernaan.", "gmapsQuery": "yogurt terdekat" },
-  { "id": "ikan-bakar", "name": "Ikan Bakar", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Protein dan omega-3 dari ikan segar.", "gmapsQuery": "ikan bakar terdekat" },
-  { "id": "karedok", "name": "Karedok", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Sayur mentah segar khas Sunda.", "gmapsQuery": "karedok terdekat" },
-  { "id": "sushi", "name": "Sushi", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Ikan dan nasi yang ringan serta mudah dicerna.", "gmapsQuery": "sushi terdekat" },
-  { "id": "tahu-gejrot", "name": "Tahu Gejrot", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Tahu ringan dengan kuah segar.", "gmapsQuery": "tahu gejrot terdekat" },
-  { "id": "nasi-goreng", "name": "Nasi Goreng", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Klasik, cepat, dan mengenyangkan.", "gmapsQuery": "nasi goreng terdekat" },
-  { "id": "mie-ayam", "name": "Mie Ayam", "type": "makanan", "phases": ["folikular", "luteal"], "wellnessNote": "Hangat dan mengenyangkan untuk mengganjal.", "gmapsQuery": "mie ayam terdekat" },
-  { "id": "sayur-asem", "name": "Sayur Asem", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Sayur berkuah asam yang segar.", "gmapsQuery": "sayur asem terdekat" },
-  { "id": "pepes-ikan", "name": "Pepes Ikan", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Ikan kukus yang rendah minyak.", "gmapsQuery": "pepes ikan terdekat" },
-  { "id": "rujak-buah", "name": "Rujak Buah", "type": "makanan", "phases": ["ovulasi"], "wellnessNote": "Buah segar kaya serat dan vitamin C.", "gmapsQuery": "rujak buah terdekat" },
-  { "id": "smoothie-bowl", "name": "Smoothie Bowl", "type": "minuman", "phases": ["ovulasi", "folikular"], "wellnessNote": "Buah dan biji-bijian yang penuh antioksidan.", "gmapsQuery": "smoothie bowl terdekat" },
-  { "id": "ayam-bakar-lalapan", "name": "Ayam Bakar Lalapan", "type": "makanan", "phases": ["ovulasi"], "wellnessNote": "Protein dengan sayuran segar sebagai lalap.", "gmapsQuery": "ayam bakar lalapan terdekat" },
-  { "id": "es-buah", "name": "Es Buah", "type": "minuman", "phases": ["ovulasi"], "wellnessNote": "Segar dan menghidrasi dengan potongan buah.", "gmapsQuery": "es buah terdekat" },
-  { "id": "capcay", "name": "Capcay", "type": "makanan", "phases": ["ovulasi", "luteal"], "wellnessNote": "Aneka sayur yang tinggi serat.", "gmapsQuery": "capcay terdekat" },
-  { "id": "es-teh-lemon", "name": "Es Teh Lemon", "type": "minuman", "phases": ["ovulasi"], "wellnessNote": "Segar dengan sentuhan vitamin C.", "gmapsQuery": "es teh lemon terdekat" },
-  { "id": "pisang-goreng", "name": "Pisang Goreng", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Pisang sebagai sumber magnesium dan kalium.", "gmapsQuery": "pisang goreng terdekat" },
-  { "id": "nasi-uduk", "name": "Nasi Uduk", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Karbohidrat kompleks yang mengenyangkan.", "gmapsQuery": "nasi uduk terdekat" },
-  { "id": "ubi-cilembu", "name": "Ubi Cilembu", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Karbohidrat kompleks dengan manis alami.", "gmapsQuery": "ubi cilembu bakar terdekat" },
-  { "id": "dark-chocolate", "name": "Dark Chocolate", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Dipercaya membantu mengangkat suasana hati.", "gmapsQuery": "toko coklat terdekat" },
-  { "id": "kacang-rebus", "name": "Kacang Rebus", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Camilan sumber magnesium yang ringan.", "gmapsQuery": "kacang rebus terdekat" },
-  { "id": "oatmeal", "name": "Oatmeal", "type": "makanan", "phases": ["luteal", "folikular"], "wellnessNote": "Karbohidrat kompleks yang mengenyangkan lebih lama.", "gmapsQuery": "oatmeal cafe terdekat" },
-  { "id": "jus-alpukat", "name": "Jus Alpukat", "type": "minuman", "phases": ["luteal"], "wellnessNote": "Lemak sehat dan kalium dari alpukat.", "gmapsQuery": "jus alpukat terdekat" }
+  {
+    "id": "wedang-jahe",
+    "name": "Wedang Jahe",
+    "type": "minuman",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Jahe hangat dipercaya membantu meredakan kram.",
+    "gmapsQuery": "wedang jahe terdekat"
+  },
+  {
+    "id": "soto-ayam",
+    "name": "Soto Ayam",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Kaldu hangat dan protein untuk pulihkan tenaga.",
+    "gmapsQuery": "soto ayam terdekat"
+  },
+  {
+    "id": "rendang",
+    "name": "Rendang Daging",
+    "type": "makanan",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Daging merah, sumber zat besi untuk ganti darah haid.",
+    "gmapsQuery": "rumah makan padang terdekat"
+  },
+  {
+    "id": "bubur-kacang-hijau",
+    "name": "Bubur Kacang Hijau",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Kacang hijau kaya zat besi, disajikan hangat.",
+    "gmapsQuery": "bubur kacang hijau terdekat"
+  },
+  {
+    "id": "kunyit-asam",
+    "name": "Kunyit Asam",
+    "type": "minuman",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Kunyit dipercaya membantu redakan nyeri haid.",
+    "gmapsQuery": "kunyit asam jamu terdekat"
+  },
+  {
+    "id": "sup-buntut",
+    "name": "Sup Buntut",
+    "type": "makanan",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Sup hangat berkuah yang menenangkan saat haid.",
+    "gmapsQuery": "sup buntut terdekat"
+  },
+  {
+    "id": "coklat-panas",
+    "name": "Coklat Panas",
+    "type": "minuman",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Coklat hangat untuk bantu angkat mood.",
+    "gmapsQuery": "coklat panas cafe terdekat"
+  },
+  {
+    "id": "gulai-kambing",
+    "name": "Gulai Kambing",
+    "type": "makanan",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Daging kambing sebagai sumber zat besi.",
+    "gmapsQuery": "gulai kambing terdekat"
+  },
+  {
+    "id": "bandrek",
+    "name": "Bandrek",
+    "type": "minuman",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Rempah hangat khas Sunda penghangat badan.",
+    "gmapsQuery": "bandrek terdekat"
+  },
+  {
+    "id": "kolak-pisang",
+    "name": "Kolak Pisang",
+    "type": "makanan",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Hangat dan manis, pisang bersantan pengganjal.",
+    "gmapsQuery": "kolak pisang terdekat"
+  },
+  {
+    "id": "bakso",
+    "name": "Bakso",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Kuah hangat dengan protein yang mengenyangkan.",
+    "gmapsQuery": "bakso terdekat"
+  },
+  {
+    "id": "telur-balado",
+    "name": "Telur Balado",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Protein telur yang praktis dan mengenyangkan.",
+    "gmapsQuery": "warung nasi telur balado terdekat"
+  },
+  {
+    "id": "wedang-uwuh",
+    "name": "Wedang Uwuh",
+    "type": "minuman",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Rempah hangat yang kaya antioksidan.",
+    "gmapsQuery": "wedang uwuh terdekat"
+  },
+  {
+    "id": "sop-ayam",
+    "name": "Sop Ayam",
+    "type": "makanan",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Kuah bening hangat yang menenangkan.",
+    "gmapsQuery": "sop ayam terdekat"
+  },
+  {
+    "id": "gado-gado",
+    "name": "Gado-gado",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Sayur segar dengan tahu-tempe untuk energi ringan.",
+    "gmapsQuery": "gado gado terdekat"
+  },
+  {
+    "id": "tempe-mendoan",
+    "name": "Tempe Mendoan",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Tempe fermentasi sebagai protein nabati.",
+    "gmapsQuery": "tempe mendoan terdekat"
+  },
+  {
+    "id": "salad-buah",
+    "name": "Salad Buah",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Buah segar yang penuh vitamin.",
+    "gmapsQuery": "salad buah terdekat"
+  },
+  {
+    "id": "nasi-pecel",
+    "name": "Nasi Pecel",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Sayur rebus dan bumbu kacang, ringan bergizi.",
+    "gmapsQuery": "nasi pecel terdekat"
+  },
+  {
+    "id": "yogurt-buah",
+    "name": "Yogurt Buah",
+    "type": "minuman",
+    "phases": ["folikular"],
+    "wellnessNote": "Probiotik yang bersahabat untuk pencernaan.",
+    "gmapsQuery": "yogurt terdekat"
+  },
+  {
+    "id": "ikan-bakar",
+    "name": "Ikan Bakar",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Protein dan omega-3 dari ikan segar.",
+    "gmapsQuery": "ikan bakar terdekat"
+  },
+  {
+    "id": "karedok",
+    "name": "Karedok",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Sayur mentah segar khas Sunda.",
+    "gmapsQuery": "karedok terdekat"
+  },
+  {
+    "id": "sushi",
+    "name": "Sushi",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Ikan dan nasi yang ringan serta mudah dicerna.",
+    "gmapsQuery": "sushi terdekat"
+  },
+  {
+    "id": "tahu-gejrot",
+    "name": "Tahu Gejrot",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Tahu ringan dengan kuah segar.",
+    "gmapsQuery": "tahu gejrot terdekat"
+  },
+  {
+    "id": "nasi-goreng",
+    "name": "Nasi Goreng",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Klasik, cepat, dan mengenyangkan.",
+    "gmapsQuery": "nasi goreng terdekat"
+  },
+  {
+    "id": "mie-ayam",
+    "name": "Mie Ayam",
+    "type": "makanan",
+    "phases": ["folikular", "luteal"],
+    "wellnessNote": "Hangat dan mengenyangkan untuk mengganjal.",
+    "gmapsQuery": "mie ayam terdekat"
+  },
+  {
+    "id": "sayur-asem",
+    "name": "Sayur Asem",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Sayur berkuah asam yang segar.",
+    "gmapsQuery": "sayur asem terdekat"
+  },
+  {
+    "id": "pepes-ikan",
+    "name": "Pepes Ikan",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Ikan kukus yang rendah minyak.",
+    "gmapsQuery": "pepes ikan terdekat"
+  },
+  {
+    "id": "rujak-buah",
+    "name": "Rujak Buah",
+    "type": "makanan",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Buah segar kaya serat dan vitamin C.",
+    "gmapsQuery": "rujak buah terdekat"
+  },
+  {
+    "id": "smoothie-bowl",
+    "name": "Smoothie Bowl",
+    "type": "minuman",
+    "phases": ["ovulasi", "folikular"],
+    "wellnessNote": "Buah dan biji-bijian yang penuh antioksidan.",
+    "gmapsQuery": "smoothie bowl terdekat"
+  },
+  {
+    "id": "ayam-bakar-lalapan",
+    "name": "Ayam Bakar Lalapan",
+    "type": "makanan",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Protein dengan sayuran segar sebagai lalap.",
+    "gmapsQuery": "ayam bakar lalapan terdekat"
+  },
+  {
+    "id": "es-buah",
+    "name": "Es Buah",
+    "type": "minuman",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Segar dan menghidrasi dengan potongan buah.",
+    "gmapsQuery": "es buah terdekat"
+  },
+  {
+    "id": "capcay",
+    "name": "Capcay",
+    "type": "makanan",
+    "phases": ["ovulasi", "luteal"],
+    "wellnessNote": "Aneka sayur yang tinggi serat.",
+    "gmapsQuery": "capcay terdekat"
+  },
+  {
+    "id": "es-teh-lemon",
+    "name": "Es Teh Lemon",
+    "type": "minuman",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Segar dengan sentuhan vitamin C.",
+    "gmapsQuery": "es teh lemon terdekat"
+  },
+  {
+    "id": "pisang-goreng",
+    "name": "Pisang Goreng",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Pisang sebagai sumber magnesium dan kalium.",
+    "gmapsQuery": "pisang goreng terdekat"
+  },
+  {
+    "id": "nasi-uduk",
+    "name": "Nasi Uduk",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Karbohidrat kompleks yang mengenyangkan.",
+    "gmapsQuery": "nasi uduk terdekat"
+  },
+  {
+    "id": "ubi-cilembu",
+    "name": "Ubi Cilembu",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Karbohidrat kompleks dengan manis alami.",
+    "gmapsQuery": "ubi cilembu bakar terdekat"
+  },
+  {
+    "id": "dark-chocolate",
+    "name": "Dark Chocolate",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Dipercaya membantu mengangkat suasana hati.",
+    "gmapsQuery": "toko coklat terdekat"
+  },
+  {
+    "id": "kacang-rebus",
+    "name": "Kacang Rebus",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Camilan sumber magnesium yang ringan.",
+    "gmapsQuery": "kacang rebus terdekat"
+  },
+  {
+    "id": "oatmeal",
+    "name": "Oatmeal",
+    "type": "makanan",
+    "phases": ["luteal", "folikular"],
+    "wellnessNote": "Karbohidrat kompleks yang mengenyangkan lebih lama.",
+    "gmapsQuery": "oatmeal cafe terdekat"
+  },
+  {
+    "id": "jus-alpukat",
+    "name": "Jus Alpukat",
+    "type": "minuman",
+    "phases": ["luteal"],
+    "wellnessNote": "Lemak sehat dan kalium dari alpukat.",
+    "gmapsQuery": "jus alpukat terdekat"
+  }
 ]

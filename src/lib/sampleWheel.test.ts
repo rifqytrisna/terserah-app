@@ -21,10 +21,7 @@ function seededRng(seq: number[]): () => number {
 
 describe('itemsForPhase', () => {
   it('returns only items tagged with the phase', () => {
-    const items: FoodItem[] = [
-      ...makeItems(3, 'menstruasi'),
-      ...makeItems(2, 'luteal'),
-    ];
+    const items: FoodItem[] = [...makeItems(3, 'menstruasi'), ...makeItems(2, 'luteal')];
     expect(itemsForPhase(items, 'menstruasi')).toHaveLength(3);
     expect(itemsForPhase(items, 'luteal')).toHaveLength(2);
   });

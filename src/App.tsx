@@ -41,12 +41,7 @@ export default function App() {
       )}
 
       {foods && (
-        <SpinnerWheel
-          items={foods}
-          phase={phase}
-          lastResultId={result?.id}
-          onResult={setResult}
-        />
+        <SpinnerWheel items={foods} phase={phase} lastResultId={result?.id} onResult={setResult} />
       )}
 
       {result && <ResultCard item={result} seenBefore={seenBefore} onCommit={handleCommit} />}

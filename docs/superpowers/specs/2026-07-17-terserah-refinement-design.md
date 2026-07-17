@@ -20,8 +20,8 @@ Aplikasi mobile-web (PWA) yang membantu mengatasi dilema "terserah" saat memilih
 
 Klaim kesehatan adalah risiko akurasi & liabilitas. Keputusan: **soft wellness framing.**
 
-- Setiap blurb manfaat ditulis sebagai kearifan umum/tradisional, contoh: *"Dipercaya membantu merilekskan otot & meredakan kram."* — bukan sebagai fakta klinis.
-- **Disclaimer persisten** di UI (mis. footer kecil di bawah kartu hasil): *"Info bersifat umum, bukan saran medis."*
+- Setiap blurb manfaat ditulis sebagai kearifan umum/tradisional, contoh: _"Dipercaya membantu merilekskan otot & meredakan kram."_ — bukan sebagai fakta klinis.
+- **Disclaimer persisten** di UI (mis. footer kecil di bawah kartu hasil): _"Info bersifat umum, bukan saran medis."_
 - Blurb harus bervariasi antar item (hindari 50 kalimat yang terasa sama).
 
 ## 3. Spinner Mechanics
@@ -39,16 +39,19 @@ Roda menampilkan **nama item sungguhan** dan benar-benar berhenti pada satu item
 TanStack Query dipertahankan, tapi diarahkan ke dua hal yang memang jadi keunggulannya, dan keduanya selaras dengan tujuan **PWA offline-first**. Ini keputusan sadar, bukan dekorasi.
 
 **A. Katalog makanan sebagai async resource yang dipersist.**
+
 - Dimuat via `useQuery` (fetch `/data/foods.json` atau dynamic `import()`), bukan `import` statis.
 - Tambahkan `persistQueryClient` + persister (localStorage / IndexedDB).
 - Manfaat nyata: loading/error state saat pertama buka, katalog **ter-cache & tersedia offline** (inti PWA), dan seam bersih untuk nanti ganti JSON dengan API tanpa mengubah UI.
 
 **B. Riwayat putaran sebagai mutation + query.**
-- **Trigger simpan = saat tap CTA Google Maps** → merepresentasikan *niat benar-benar makan item itu* ("things I decided to eat"). Bukan auto-save tiap spin.
+
+- **Trigger simpan = saat tap CTA Google Maps** → merepresentasikan _niat benar-benar makan item itu_ ("things I decided to eat"). Bukan auto-save tiap spin.
 - `useMutation` menulis `{ item, phase, timestamp }` ke storage yang dipersist.
 - `useQuery(['history'])` membaca kembali; mutation meng-invalidate query → UI update otomatis.
 
 **Fitur "Riwayat" (leverage stack):**
+
 - Daftar recent-picks yang collapsible ("Terakhir kamu pilih…") dengan item + fase + tanggal.
 - Marker **"sudah pernah"** pada hasil yang sebelumnya sudah pernah didapat.
 
@@ -70,9 +73,9 @@ export interface FoodItem {
   id: string;
   name: string;
   type: ItemType;
-  phases: MenstrualPhase[];      // 1-4 tags, dipilih deliberate
-  wellnessNote: string;          // soft framing, bukan klaim medis
-  gmapsQuery: string;            // istilah Maps yang findable
+  phases: MenstrualPhase[]; // 1-4 tags, dipilih deliberate
+  wellnessNote: string; // soft framing, bukan klaim medis
+  gmapsQuery: string; // istilah Maps yang findable
   // Reserved untuk filtering masa depan (TIDAK dibangun di MVP):
   // region?: string;
   // spiciness?: 0 | 1 | 2 | 3;

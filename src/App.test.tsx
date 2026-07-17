@@ -6,8 +6,22 @@ import App from './App';
 import type { ReactNode } from 'react';
 
 const sample = [
-  { id: 'a', name: 'Alpha', type: 'makanan', phases: ['menstruasi'], wellnessNote: 'note a', gmapsQuery: 'alpha terdekat' },
-  { id: 'b', name: 'Beta', type: 'makanan', phases: ['menstruasi'], wellnessNote: 'note b', gmapsQuery: 'beta terdekat' },
+  {
+    id: 'a',
+    name: 'Alpha',
+    type: 'makanan',
+    phases: ['menstruasi'],
+    wellnessNote: 'note a',
+    gmapsQuery: 'alpha terdekat',
+  },
+  {
+    id: 'b',
+    name: 'Beta',
+    type: 'makanan',
+    phases: ['menstruasi'],
+    wellnessNote: 'note b',
+    gmapsQuery: 'beta terdekat',
+  },
 ];
 
 function wrapper({ children }: { children: ReactNode }) {
@@ -40,9 +54,7 @@ describe('App', () => {
   it('spins, shows a result, and records history on maps commit', async () => {
     vi.spyOn(window, 'open').mockImplementation(() => null);
     render(<App />, { wrapper });
-    await waitFor(() =>
-      expect(screen.getByRole('button', { name: /putar/i })).toBeEnabled()
-    );
+    await waitFor(() => expect(screen.getByRole('button', { name: /putar/i })).toBeEnabled());
 
     vi.useFakeTimers();
     act(() => {
@@ -57,8 +69,6 @@ describe('App', () => {
     expect(screen.getByText(/📜 Riwayat Pilihan \(0\)/i)).toBeInTheDocument();
     await userEvent.click(cta);
 
-    await waitFor(() =>
-      expect(screen.getByText(/Riwayat Pilihan \(1\)/i)).toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.getByText(/Riwayat Pilihan \(1\)/i)).toBeInTheDocument());
   });
 });

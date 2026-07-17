@@ -26,10 +26,12 @@
 ### Task 1: Project scaffold, tooling, and smoke test
 
 **Files:**
+
 - Create: `package.json`, `vite.config.ts`, `tsconfig.json`, `tsconfig.node.json`, `index.html`, `postcss.config.js`, `tailwind.config.js`, `src/index.css`, `src/main.tsx`, `src/App.tsx`, `src/vite-env.d.ts`, `src/setupTests.ts`
 - Test: `src/App.test.tsx`
 
 **Interfaces:**
+
 - Consumes: nothing (first task).
 - Produces: a running Vite + React + TS + Tailwind app; Vitest configured with jsdom + RTL; `App` component exported as default from `src/App.tsx`.
 
@@ -82,6 +84,7 @@ Expected: completes without error; `node_modules/` created (already gitignored).
 - [ ] **Step 3: Create config files**
 
 `tsconfig.json`:
+
 ```json
 {
   "compilerOptions": {
@@ -109,6 +112,7 @@ Expected: completes without error; `node_modules/` created (already gitignored).
 ```
 
 `tsconfig.node.json`:
+
 ```json
 {
   "compilerOptions": {
@@ -125,6 +129,7 @@ Expected: completes without error; `node_modules/` created (already gitignored).
 ```
 
 `vite.config.ts` (PWA added later in Task 12; keep minimal here):
+
 ```typescript
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
@@ -141,6 +146,7 @@ export default defineConfig({
 ```
 
 `postcss.config.js`:
+
 ```javascript
 export default {
   plugins: {
@@ -151,6 +157,7 @@ export default {
 ```
 
 `tailwind.config.js`:
+
 ```javascript
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -161,6 +168,7 @@ export default {
 ```
 
 `src/index.css`:
+
 ```css
 @tailwind base;
 @tailwind components;
@@ -168,17 +176,20 @@ export default {
 ```
 
 `src/vite-env.d.ts`:
+
 ```typescript
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-pwa/client" />
 ```
 
 `src/setupTests.ts`:
+
 ```typescript
 import '@testing-library/jest-dom';
 ```
 
 `index.html`:
+
 ```html
 <!doctype html>
 <html lang="id">
@@ -195,6 +206,7 @@ import '@testing-library/jest-dom';
 ```
 
 `src/main.tsx`:
+
 ```tsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -211,6 +223,7 @@ createRoot(document.getElementById('root')!).render(
 - [ ] **Step 4: Write the failing smoke test**
 
 `src/App.test.tsx`:
+
 ```tsx
 import { render, screen } from '@testing-library/react';
 import App from './App';
@@ -260,10 +273,12 @@ git commit -m "chore: scaffold vite react ts tailwind + vitest with smoke test"
 ### Task 2: Domain types, full dataset, and dataset validation
 
 **Files:**
+
 - Create: `src/types/food.ts`, `public/data/foods.json`, `src/data/validateDataset.ts`
 - Test: `src/data/validateDataset.test.ts`
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces:
   - `type MenstrualPhase = 'menstruasi' | 'folikular' | 'ovulasi' | 'luteal'`
@@ -311,46 +326,326 @@ export const MIN_PER_PHASE = 8;
 
 ```json
 [
-  { "id": "wedang-jahe", "name": "Wedang Jahe", "type": "minuman", "phases": ["menstruasi", "luteal"], "wellnessNote": "Jahe hangat dipercaya membantu meredakan kram.", "gmapsQuery": "wedang jahe terdekat" },
-  { "id": "soto-ayam", "name": "Soto Ayam", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Kaldu hangat dan protein untuk pulihkan tenaga.", "gmapsQuery": "soto ayam terdekat" },
-  { "id": "rendang", "name": "Rendang Daging", "type": "makanan", "phases": ["menstruasi"], "wellnessNote": "Daging merah, sumber zat besi untuk ganti darah haid.", "gmapsQuery": "rumah makan padang terdekat" },
-  { "id": "bubur-kacang-hijau", "name": "Bubur Kacang Hijau", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Kacang hijau kaya zat besi, disajikan hangat.", "gmapsQuery": "bubur kacang hijau terdekat" },
-  { "id": "kunyit-asam", "name": "Kunyit Asam", "type": "minuman", "phases": ["menstruasi"], "wellnessNote": "Kunyit dipercaya membantu redakan nyeri haid.", "gmapsQuery": "kunyit asam jamu terdekat" },
-  { "id": "sup-buntut", "name": "Sup Buntut", "type": "makanan", "phases": ["menstruasi"], "wellnessNote": "Sup hangat berkuah yang menenangkan saat haid.", "gmapsQuery": "sup buntut terdekat" },
-  { "id": "coklat-panas", "name": "Coklat Panas", "type": "minuman", "phases": ["menstruasi", "luteal"], "wellnessNote": "Coklat hangat untuk bantu angkat mood.", "gmapsQuery": "coklat panas cafe terdekat" },
-  { "id": "gulai-kambing", "name": "Gulai Kambing", "type": "makanan", "phases": ["menstruasi"], "wellnessNote": "Daging kambing sebagai sumber zat besi.", "gmapsQuery": "gulai kambing terdekat" },
-  { "id": "bandrek", "name": "Bandrek", "type": "minuman", "phases": ["menstruasi"], "wellnessNote": "Rempah hangat khas Sunda penghangat badan.", "gmapsQuery": "bandrek terdekat" },
-  { "id": "kolak-pisang", "name": "Kolak Pisang", "type": "makanan", "phases": ["menstruasi", "luteal"], "wellnessNote": "Hangat dan manis, pisang bersantan pengganjal.", "gmapsQuery": "kolak pisang terdekat" },
-  { "id": "bakso", "name": "Bakso", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Kuah hangat dengan protein yang mengenyangkan.", "gmapsQuery": "bakso terdekat" },
-  { "id": "telur-balado", "name": "Telur Balado", "type": "makanan", "phases": ["menstruasi", "folikular"], "wellnessNote": "Protein telur yang praktis dan mengenyangkan.", "gmapsQuery": "warung nasi telur balado terdekat" },
-  { "id": "wedang-uwuh", "name": "Wedang Uwuh", "type": "minuman", "phases": ["menstruasi", "luteal"], "wellnessNote": "Rempah hangat yang kaya antioksidan.", "gmapsQuery": "wedang uwuh terdekat" },
-  { "id": "sop-ayam", "name": "Sop Ayam", "type": "makanan", "phases": ["menstruasi", "luteal"], "wellnessNote": "Kuah bening hangat yang menenangkan.", "gmapsQuery": "sop ayam terdekat" },
-  { "id": "gado-gado", "name": "Gado-gado", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Sayur segar dengan tahu-tempe untuk energi ringan.", "gmapsQuery": "gado gado terdekat" },
-  { "id": "tempe-mendoan", "name": "Tempe Mendoan", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Tempe fermentasi sebagai protein nabati.", "gmapsQuery": "tempe mendoan terdekat" },
-  { "id": "salad-buah", "name": "Salad Buah", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Buah segar yang penuh vitamin.", "gmapsQuery": "salad buah terdekat" },
-  { "id": "nasi-pecel", "name": "Nasi Pecel", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Sayur rebus dan bumbu kacang, ringan bergizi.", "gmapsQuery": "nasi pecel terdekat" },
-  { "id": "yogurt-buah", "name": "Yogurt Buah", "type": "minuman", "phases": ["folikular"], "wellnessNote": "Probiotik yang bersahabat untuk pencernaan.", "gmapsQuery": "yogurt terdekat" },
-  { "id": "ikan-bakar", "name": "Ikan Bakar", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Protein dan omega-3 dari ikan segar.", "gmapsQuery": "ikan bakar terdekat" },
-  { "id": "karedok", "name": "Karedok", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Sayur mentah segar khas Sunda.", "gmapsQuery": "karedok terdekat" },
-  { "id": "sushi", "name": "Sushi", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Ikan dan nasi yang ringan serta mudah dicerna.", "gmapsQuery": "sushi terdekat" },
-  { "id": "tahu-gejrot", "name": "Tahu Gejrot", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Tahu ringan dengan kuah segar.", "gmapsQuery": "tahu gejrot terdekat" },
-  { "id": "nasi-goreng", "name": "Nasi Goreng", "type": "makanan", "phases": ["folikular"], "wellnessNote": "Klasik, cepat, dan mengenyangkan.", "gmapsQuery": "nasi goreng terdekat" },
-  { "id": "mie-ayam", "name": "Mie Ayam", "type": "makanan", "phases": ["folikular", "luteal"], "wellnessNote": "Hangat dan mengenyangkan untuk mengganjal.", "gmapsQuery": "mie ayam terdekat" },
-  { "id": "sayur-asem", "name": "Sayur Asem", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Sayur berkuah asam yang segar.", "gmapsQuery": "sayur asem terdekat" },
-  { "id": "pepes-ikan", "name": "Pepes Ikan", "type": "makanan", "phases": ["folikular", "ovulasi"], "wellnessNote": "Ikan kukus yang rendah minyak.", "gmapsQuery": "pepes ikan terdekat" },
-  { "id": "rujak-buah", "name": "Rujak Buah", "type": "makanan", "phases": ["ovulasi"], "wellnessNote": "Buah segar kaya serat dan vitamin C.", "gmapsQuery": "rujak buah terdekat" },
-  { "id": "smoothie-bowl", "name": "Smoothie Bowl", "type": "minuman", "phases": ["ovulasi", "folikular"], "wellnessNote": "Buah dan biji-bijian yang penuh antioksidan.", "gmapsQuery": "smoothie bowl terdekat" },
-  { "id": "ayam-bakar-lalapan", "name": "Ayam Bakar Lalapan", "type": "makanan", "phases": ["ovulasi"], "wellnessNote": "Protein dengan sayuran segar sebagai lalap.", "gmapsQuery": "ayam bakar lalapan terdekat" },
-  { "id": "es-buah", "name": "Es Buah", "type": "minuman", "phases": ["ovulasi"], "wellnessNote": "Segar dan menghidrasi dengan potongan buah.", "gmapsQuery": "es buah terdekat" },
-  { "id": "capcay", "name": "Capcay", "type": "makanan", "phases": ["ovulasi", "luteal"], "wellnessNote": "Aneka sayur yang tinggi serat.", "gmapsQuery": "capcay terdekat" },
-  { "id": "es-teh-lemon", "name": "Es Teh Lemon", "type": "minuman", "phases": ["ovulasi"], "wellnessNote": "Segar dengan sentuhan vitamin C.", "gmapsQuery": "es teh lemon terdekat" },
-  { "id": "pisang-goreng", "name": "Pisang Goreng", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Pisang sebagai sumber magnesium dan kalium.", "gmapsQuery": "pisang goreng terdekat" },
-  { "id": "nasi-uduk", "name": "Nasi Uduk", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Karbohidrat kompleks yang mengenyangkan.", "gmapsQuery": "nasi uduk terdekat" },
-  { "id": "ubi-cilembu", "name": "Ubi Cilembu", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Karbohidrat kompleks dengan manis alami.", "gmapsQuery": "ubi cilembu bakar terdekat" },
-  { "id": "dark-chocolate", "name": "Dark Chocolate", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Dipercaya membantu mengangkat suasana hati.", "gmapsQuery": "toko coklat terdekat" },
-  { "id": "kacang-rebus", "name": "Kacang Rebus", "type": "makanan", "phases": ["luteal"], "wellnessNote": "Camilan sumber magnesium yang ringan.", "gmapsQuery": "kacang rebus terdekat" },
-  { "id": "oatmeal", "name": "Oatmeal", "type": "makanan", "phases": ["luteal", "folikular"], "wellnessNote": "Karbohidrat kompleks yang mengenyangkan lebih lama.", "gmapsQuery": "oatmeal cafe terdekat" },
-  { "id": "jus-alpukat", "name": "Jus Alpukat", "type": "minuman", "phases": ["luteal"], "wellnessNote": "Lemak sehat dan kalium dari alpukat.", "gmapsQuery": "jus alpukat terdekat" }
+  {
+    "id": "wedang-jahe",
+    "name": "Wedang Jahe",
+    "type": "minuman",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Jahe hangat dipercaya membantu meredakan kram.",
+    "gmapsQuery": "wedang jahe terdekat"
+  },
+  {
+    "id": "soto-ayam",
+    "name": "Soto Ayam",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Kaldu hangat dan protein untuk pulihkan tenaga.",
+    "gmapsQuery": "soto ayam terdekat"
+  },
+  {
+    "id": "rendang",
+    "name": "Rendang Daging",
+    "type": "makanan",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Daging merah, sumber zat besi untuk ganti darah haid.",
+    "gmapsQuery": "rumah makan padang terdekat"
+  },
+  {
+    "id": "bubur-kacang-hijau",
+    "name": "Bubur Kacang Hijau",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Kacang hijau kaya zat besi, disajikan hangat.",
+    "gmapsQuery": "bubur kacang hijau terdekat"
+  },
+  {
+    "id": "kunyit-asam",
+    "name": "Kunyit Asam",
+    "type": "minuman",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Kunyit dipercaya membantu redakan nyeri haid.",
+    "gmapsQuery": "kunyit asam jamu terdekat"
+  },
+  {
+    "id": "sup-buntut",
+    "name": "Sup Buntut",
+    "type": "makanan",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Sup hangat berkuah yang menenangkan saat haid.",
+    "gmapsQuery": "sup buntut terdekat"
+  },
+  {
+    "id": "coklat-panas",
+    "name": "Coklat Panas",
+    "type": "minuman",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Coklat hangat untuk bantu angkat mood.",
+    "gmapsQuery": "coklat panas cafe terdekat"
+  },
+  {
+    "id": "gulai-kambing",
+    "name": "Gulai Kambing",
+    "type": "makanan",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Daging kambing sebagai sumber zat besi.",
+    "gmapsQuery": "gulai kambing terdekat"
+  },
+  {
+    "id": "bandrek",
+    "name": "Bandrek",
+    "type": "minuman",
+    "phases": ["menstruasi"],
+    "wellnessNote": "Rempah hangat khas Sunda penghangat badan.",
+    "gmapsQuery": "bandrek terdekat"
+  },
+  {
+    "id": "kolak-pisang",
+    "name": "Kolak Pisang",
+    "type": "makanan",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Hangat dan manis, pisang bersantan pengganjal.",
+    "gmapsQuery": "kolak pisang terdekat"
+  },
+  {
+    "id": "bakso",
+    "name": "Bakso",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Kuah hangat dengan protein yang mengenyangkan.",
+    "gmapsQuery": "bakso terdekat"
+  },
+  {
+    "id": "telur-balado",
+    "name": "Telur Balado",
+    "type": "makanan",
+    "phases": ["menstruasi", "folikular"],
+    "wellnessNote": "Protein telur yang praktis dan mengenyangkan.",
+    "gmapsQuery": "warung nasi telur balado terdekat"
+  },
+  {
+    "id": "wedang-uwuh",
+    "name": "Wedang Uwuh",
+    "type": "minuman",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Rempah hangat yang kaya antioksidan.",
+    "gmapsQuery": "wedang uwuh terdekat"
+  },
+  {
+    "id": "sop-ayam",
+    "name": "Sop Ayam",
+    "type": "makanan",
+    "phases": ["menstruasi", "luteal"],
+    "wellnessNote": "Kuah bening hangat yang menenangkan.",
+    "gmapsQuery": "sop ayam terdekat"
+  },
+  {
+    "id": "gado-gado",
+    "name": "Gado-gado",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Sayur segar dengan tahu-tempe untuk energi ringan.",
+    "gmapsQuery": "gado gado terdekat"
+  },
+  {
+    "id": "tempe-mendoan",
+    "name": "Tempe Mendoan",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Tempe fermentasi sebagai protein nabati.",
+    "gmapsQuery": "tempe mendoan terdekat"
+  },
+  {
+    "id": "salad-buah",
+    "name": "Salad Buah",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Buah segar yang penuh vitamin.",
+    "gmapsQuery": "salad buah terdekat"
+  },
+  {
+    "id": "nasi-pecel",
+    "name": "Nasi Pecel",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Sayur rebus dan bumbu kacang, ringan bergizi.",
+    "gmapsQuery": "nasi pecel terdekat"
+  },
+  {
+    "id": "yogurt-buah",
+    "name": "Yogurt Buah",
+    "type": "minuman",
+    "phases": ["folikular"],
+    "wellnessNote": "Probiotik yang bersahabat untuk pencernaan.",
+    "gmapsQuery": "yogurt terdekat"
+  },
+  {
+    "id": "ikan-bakar",
+    "name": "Ikan Bakar",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Protein dan omega-3 dari ikan segar.",
+    "gmapsQuery": "ikan bakar terdekat"
+  },
+  {
+    "id": "karedok",
+    "name": "Karedok",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Sayur mentah segar khas Sunda.",
+    "gmapsQuery": "karedok terdekat"
+  },
+  {
+    "id": "sushi",
+    "name": "Sushi",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Ikan dan nasi yang ringan serta mudah dicerna.",
+    "gmapsQuery": "sushi terdekat"
+  },
+  {
+    "id": "tahu-gejrot",
+    "name": "Tahu Gejrot",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Tahu ringan dengan kuah segar.",
+    "gmapsQuery": "tahu gejrot terdekat"
+  },
+  {
+    "id": "nasi-goreng",
+    "name": "Nasi Goreng",
+    "type": "makanan",
+    "phases": ["folikular"],
+    "wellnessNote": "Klasik, cepat, dan mengenyangkan.",
+    "gmapsQuery": "nasi goreng terdekat"
+  },
+  {
+    "id": "mie-ayam",
+    "name": "Mie Ayam",
+    "type": "makanan",
+    "phases": ["folikular", "luteal"],
+    "wellnessNote": "Hangat dan mengenyangkan untuk mengganjal.",
+    "gmapsQuery": "mie ayam terdekat"
+  },
+  {
+    "id": "sayur-asem",
+    "name": "Sayur Asem",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Sayur berkuah asam yang segar.",
+    "gmapsQuery": "sayur asem terdekat"
+  },
+  {
+    "id": "pepes-ikan",
+    "name": "Pepes Ikan",
+    "type": "makanan",
+    "phases": ["folikular", "ovulasi"],
+    "wellnessNote": "Ikan kukus yang rendah minyak.",
+    "gmapsQuery": "pepes ikan terdekat"
+  },
+  {
+    "id": "rujak-buah",
+    "name": "Rujak Buah",
+    "type": "makanan",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Buah segar kaya serat dan vitamin C.",
+    "gmapsQuery": "rujak buah terdekat"
+  },
+  {
+    "id": "smoothie-bowl",
+    "name": "Smoothie Bowl",
+    "type": "minuman",
+    "phases": ["ovulasi", "folikular"],
+    "wellnessNote": "Buah dan biji-bijian yang penuh antioksidan.",
+    "gmapsQuery": "smoothie bowl terdekat"
+  },
+  {
+    "id": "ayam-bakar-lalapan",
+    "name": "Ayam Bakar Lalapan",
+    "type": "makanan",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Protein dengan sayuran segar sebagai lalap.",
+    "gmapsQuery": "ayam bakar lalapan terdekat"
+  },
+  {
+    "id": "es-buah",
+    "name": "Es Buah",
+    "type": "minuman",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Segar dan menghidrasi dengan potongan buah.",
+    "gmapsQuery": "es buah terdekat"
+  },
+  {
+    "id": "capcay",
+    "name": "Capcay",
+    "type": "makanan",
+    "phases": ["ovulasi", "luteal"],
+    "wellnessNote": "Aneka sayur yang tinggi serat.",
+    "gmapsQuery": "capcay terdekat"
+  },
+  {
+    "id": "es-teh-lemon",
+    "name": "Es Teh Lemon",
+    "type": "minuman",
+    "phases": ["ovulasi"],
+    "wellnessNote": "Segar dengan sentuhan vitamin C.",
+    "gmapsQuery": "es teh lemon terdekat"
+  },
+  {
+    "id": "pisang-goreng",
+    "name": "Pisang Goreng",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Pisang sebagai sumber magnesium dan kalium.",
+    "gmapsQuery": "pisang goreng terdekat"
+  },
+  {
+    "id": "nasi-uduk",
+    "name": "Nasi Uduk",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Karbohidrat kompleks yang mengenyangkan.",
+    "gmapsQuery": "nasi uduk terdekat"
+  },
+  {
+    "id": "ubi-cilembu",
+    "name": "Ubi Cilembu",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Karbohidrat kompleks dengan manis alami.",
+    "gmapsQuery": "ubi cilembu bakar terdekat"
+  },
+  {
+    "id": "dark-chocolate",
+    "name": "Dark Chocolate",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Dipercaya membantu mengangkat suasana hati.",
+    "gmapsQuery": "toko coklat terdekat"
+  },
+  {
+    "id": "kacang-rebus",
+    "name": "Kacang Rebus",
+    "type": "makanan",
+    "phases": ["luteal"],
+    "wellnessNote": "Camilan sumber magnesium yang ringan.",
+    "gmapsQuery": "kacang rebus terdekat"
+  },
+  {
+    "id": "oatmeal",
+    "name": "Oatmeal",
+    "type": "makanan",
+    "phases": ["luteal", "folikular"],
+    "wellnessNote": "Karbohidrat kompleks yang mengenyangkan lebih lama.",
+    "gmapsQuery": "oatmeal cafe terdekat"
+  },
+  {
+    "id": "jus-alpukat",
+    "name": "Jus Alpukat",
+    "type": "minuman",
+    "phases": ["luteal"],
+    "wellnessNote": "Lemak sehat dan kalium dari alpukat.",
+    "gmapsQuery": "jus alpukat terdekat"
+  }
 ]
 ```
 
@@ -359,6 +654,7 @@ export const MIN_PER_PHASE = 8;
 - [ ] **Step 3: Write the failing validation test**
 
 `src/data/validateDataset.test.ts`:
+
 ```typescript
 import { describe, it, expect } from 'vitest';
 import foods from '../../public/data/foods.json';
@@ -451,10 +747,12 @@ git commit -m "feat: add food types, 40-item catalog, and dataset validation"
 ### Task 3: Wheel sampling logic
 
 **Files:**
+
 - Create: `src/lib/sampleWheel.ts`
 - Test: `src/lib/sampleWheel.test.ts`
 
 **Interfaces:**
+
 - Consumes: `FoodItem`, `MenstrualPhase` from `src/types/food.ts`.
 - Produces:
   - `const WHEEL_SIZE = 8`
@@ -464,6 +762,7 @@ git commit -m "feat: add food types, 40-item catalog, and dataset validation"
 - [ ] **Step 1: Write the failing tests**
 
 `src/lib/sampleWheel.test.ts`:
+
 ```typescript
 import { describe, it, expect } from 'vitest';
 import { itemsForPhase, sampleWheel, WHEEL_SIZE } from './sampleWheel';
@@ -488,10 +787,7 @@ function seededRng(seq: number[]): () => number {
 
 describe('itemsForPhase', () => {
   it('returns only items tagged with the phase', () => {
-    const items: FoodItem[] = [
-      ...makeItems(3, 'menstruasi'),
-      ...makeItems(2, 'luteal'),
-    ];
+    const items: FoodItem[] = [...makeItems(3, 'menstruasi'), ...makeItems(2, 'luteal')];
     expect(itemsForPhase(items, 'menstruasi')).toHaveLength(3);
     expect(itemsForPhase(items, 'luteal')).toHaveLength(2);
   });
@@ -595,10 +891,12 @@ git commit -m "feat: add phase filtering and wheel sampling with exclude-last"
 ### Task 4: Google Maps navigation utility
 
 **Files:**
+
 - Create: `src/lib/navigation.ts`
 - Test: `src/lib/navigation.test.ts`
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces:
   - `function buildMapsUrl(query: string): string`
@@ -607,6 +905,7 @@ git commit -m "feat: add phase filtering and wheel sampling with exclude-last"
 - [ ] **Step 1: Write the failing tests**
 
 `src/lib/navigation.test.ts`:
+
 ```typescript
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { buildMapsUrl, openGoogleMapsSearch } from './navigation';
@@ -673,10 +972,12 @@ git commit -m "feat: add google maps deep-link navigation util"
 ### Task 5: History storage (localStorage)
 
 **Files:**
+
 - Create: `src/lib/historyStore.ts`
 - Test: `src/lib/historyStore.test.ts`
 
 **Interfaces:**
+
 - Consumes: `MenstrualPhase` from `src/types/food.ts`.
 - Produces:
   - `interface HistoryEntry { id: string; name: string; phase: MenstrualPhase; timestamp: number; }`
@@ -688,6 +989,7 @@ git commit -m "feat: add google maps deep-link navigation util"
 - [ ] **Step 1: Write the failing tests**
 
 `src/lib/historyStore.test.ts`:
+
 ```typescript
 import { describe, it, expect, beforeEach } from 'vitest';
 import { readHistory, appendHistory, HISTORY_KEY, HISTORY_LIMIT } from './historyStore';
@@ -776,11 +1078,13 @@ git commit -m "feat: add localStorage-backed spin history store"
 ### Task 6: Query client, persistence, and catalog query
 
 **Files:**
+
 - Create: `src/queryClient.ts`, `src/data/useFoods.ts`
 - Modify: `src/main.tsx` (wrap app in `PersistQueryClientProvider`)
 - Test: `src/data/useFoods.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `FoodItem` from `src/types/food.ts`.
 - Produces:
   - `const queryClient: QueryClient`
@@ -814,6 +1118,7 @@ export const persister = createSyncStoragePersister({
 - [ ] **Step 2: Write the failing test for `useFoods`**
 
 `src/data/useFoods.test.tsx`:
+
 ```tsx
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
@@ -822,7 +1127,14 @@ import { useFoods } from './useFoods';
 import type { ReactNode } from 'react';
 
 const sample = [
-  { id: 'x', name: 'X', type: 'makanan', phases: ['menstruasi'], wellnessNote: 'n', gmapsQuery: 'q' },
+  {
+    id: 'x',
+    name: 'X',
+    type: 'makanan',
+    phases: ['menstruasi'],
+    wellnessNote: 'n',
+    gmapsQuery: 'q',
+  },
 ];
 
 function wrapper({ children }: { children: ReactNode }) {
@@ -913,10 +1225,12 @@ git commit -m "feat: add react-query client with offline persistence and catalog
 ### Task 7: History hook (mutation + query)
 
 **Files:**
+
 - Create: `src/data/useHistory.ts`
 - Test: `src/data/useHistory.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `readHistory`, `appendHistory`, `HistoryEntry` from `src/lib/historyStore.ts`.
 - Produces:
   - `const HISTORY_QUERY_KEY = ['history'] as const`
@@ -925,6 +1239,7 @@ git commit -m "feat: add react-query client with offline persistence and catalog
 - [ ] **Step 1: Write the failing test**
 
 `src/data/useHistory.test.tsx`:
+
 ```tsx
 import { describe, it, expect, beforeEach } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
@@ -1011,10 +1326,12 @@ git commit -m "feat: add history hook backed by mutation and query"
 ### Task 8: Phase tabs component
 
 **Files:**
+
 - Create: `src/components/PhaseTabs.tsx`
 - Test: `src/components/PhaseTabs.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `MenstrualPhase`, `PHASES`, `PHASE_LABELS` from `src/types/food.ts`.
 - Produces:
   - `interface PhaseTabsProps { active: MenstrualPhase; onChange: (phase: MenstrualPhase) => void; }`
@@ -1023,6 +1340,7 @@ git commit -m "feat: add history hook backed by mutation and query"
 - [ ] **Step 1: Write the failing test**
 
 `src/components/PhaseTabs.test.tsx`:
+
 ```tsx
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
@@ -1033,10 +1351,7 @@ describe('PhaseTabs', () => {
   it('renders all four phases and marks the active one', () => {
     render(<PhaseTabs active="ovulasi" onChange={() => {}} />);
     expect(screen.getByRole('tab', { name: /Menstruasi/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Ovulasi/i })).toHaveAttribute(
-      'aria-selected',
-      'true'
-    );
+    expect(screen.getByRole('tab', { name: /Ovulasi/i })).toHaveAttribute('aria-selected', 'true');
   });
 
   it('calls onChange with the clicked phase', async () => {
@@ -1105,10 +1420,12 @@ git commit -m "feat: add phase tabs component"
 ### Task 9: Spinner wheel component
 
 **Files:**
+
 - Create: `src/components/SpinnerWheel.tsx`
 - Test: `src/components/SpinnerWheel.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `FoodItem`, `MenstrualPhase` from `src/types/food.ts`; `sampleWheel`, `WHEEL_SIZE` from `src/lib/sampleWheel.ts`.
 - Produces:
   - `interface SpinnerWheelProps { items: FoodItem[]; phase: MenstrualPhase; lastResultId?: string; onResult: (item: FoodItem) => void; }`
@@ -1119,6 +1436,7 @@ git commit -m "feat: add phase tabs component"
 - [ ] **Step 1: Write the failing test**
 
 `src/components/SpinnerWheel.test.tsx`:
+
 ```tsx
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, act } from '@testing-library/react';
@@ -1149,9 +1467,7 @@ afterEach(() => {
 describe('SpinnerWheel', () => {
   it('renders at most WHEEL_SIZE segments after spinning', () => {
     const onResult = vi.fn();
-    render(
-      <SpinnerWheel items={makeItems(20)} phase="menstruasi" onResult={onResult} />
-    );
+    render(<SpinnerWheel items={makeItems(20)} phase="menstruasi" onResult={onResult} />);
     act(() => {
       screen.getByRole('button', { name: /putar/i }).click();
     });
@@ -1160,9 +1476,7 @@ describe('SpinnerWheel', () => {
 
   it('calls onResult with a sampled item after the animation', () => {
     const onResult = vi.fn();
-    render(
-      <SpinnerWheel items={makeItems(10)} phase="menstruasi" onResult={onResult} />
-    );
+    render(<SpinnerWheel items={makeItems(10)} phase="menstruasi" onResult={onResult} />);
     act(() => {
       screen.getByRole('button', { name: /putar/i }).click();
     });
@@ -1275,10 +1589,12 @@ git commit -m "feat: add spinner wheel component with sampled segments"
 ### Task 10: Result card + disclaimer
 
 **Files:**
+
 - Create: `src/components/ResultCard.tsx`
 - Test: `src/components/ResultCard.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `FoodItem` from `src/types/food.ts`; `openGoogleMapsSearch` from `src/lib/navigation.ts`.
 - Produces:
   - `interface ResultCardProps { item: FoodItem; seenBefore: boolean; onCommit: (item: FoodItem) => void; }`
@@ -1287,6 +1603,7 @@ git commit -m "feat: add spinner wheel component with sampled segments"
 - [ ] **Step 1: Write the failing test**
 
 `src/components/ResultCard.test.tsx`:
+
 ```tsx
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
@@ -1315,9 +1632,7 @@ describe('ResultCard', () => {
   });
 
   it('shows the "sudah pernah" badge only when seenBefore', () => {
-    const { rerender } = render(
-      <ResultCard item={item} seenBefore={false} onCommit={() => {}} />
-    );
+    const { rerender } = render(<ResultCard item={item} seenBefore={false} onCommit={() => {}} />);
     expect(screen.queryByText(/sudah pernah/i)).not.toBeInTheDocument();
     rerender(<ResultCard item={item} seenBefore={true} onCommit={() => {}} />);
     expect(screen.getByText(/sudah pernah/i)).toBeInTheDocument();
@@ -1367,7 +1682,9 @@ export default function ResultCard({ item, seenBefore, onCommit }: ResultCardPro
         </span>
       )}
       <p className="mt-2 text-sm text-slate-700">🩺 {item.wellnessNote}</p>
-      <p className="mt-1 text-[11px] italic text-slate-400">Info bersifat umum, bukan saran medis.</p>
+      <p className="mt-1 text-[11px] italic text-slate-400">
+        Info bersifat umum, bukan saran medis.
+      </p>
       <button
         onClick={handleCommit}
         className="mt-3 min-h-[54px] w-full rounded-xl bg-emerald-600 px-4 text-base font-bold text-white"
@@ -1396,10 +1713,12 @@ git commit -m "feat: add result card with wellness note, disclaimer, and maps ct
 ### Task 11: History list component
 
 **Files:**
+
 - Create: `src/components/HistoryList.tsx`
 - Test: `src/components/HistoryList.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `HistoryEntry` from `src/lib/historyStore.ts`; `PHASE_LABELS` from `src/types/food.ts`.
 - Produces:
   - `interface HistoryListProps { entries: HistoryEntry[]; }`
@@ -1408,6 +1727,7 @@ git commit -m "feat: add result card with wellness note, disclaimer, and maps ct
 - [ ] **Step 1: Write the failing test**
 
 `src/components/HistoryList.test.tsx`:
+
 ```tsx
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
@@ -1492,10 +1812,12 @@ git commit -m "feat: add collapsible history list component"
 ### Task 12: Compose the App
 
 **Files:**
+
 - Modify: `src/App.tsx` (replace the Task 1 placeholder)
 - Test: `src/App.test.tsx` (replace the Task 1 smoke test)
 
 **Interfaces:**
+
 - Consumes: `useFoods`, `useHistory`, `PhaseTabs`, `SpinnerWheel`, `ResultCard`, `HistoryList`, and types.
 - Produces: the composed single-screen experience. No new exported interface.
 
@@ -1504,6 +1826,7 @@ State orchestration: `App` holds `phase` (default `'menstruasi'`) and `result: F
 - [ ] **Step 1: Replace the smoke test with an integration test**
 
 `src/App.test.tsx`:
+
 ```tsx
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, act, waitFor } from '@testing-library/react';
@@ -1513,8 +1836,22 @@ import App from './App';
 import type { ReactNode } from 'react';
 
 const sample = [
-  { id: 'a', name: 'Alpha', type: 'makanan', phases: ['menstruasi'], wellnessNote: 'note a', gmapsQuery: 'alpha terdekat' },
-  { id: 'b', name: 'Beta', type: 'makanan', phases: ['menstruasi'], wellnessNote: 'note b', gmapsQuery: 'beta terdekat' },
+  {
+    id: 'a',
+    name: 'Alpha',
+    type: 'makanan',
+    phases: ['menstruasi'],
+    wellnessNote: 'note a',
+    gmapsQuery: 'alpha terdekat',
+  },
+  {
+    id: 'b',
+    name: 'Beta',
+    type: 'makanan',
+    phases: ['menstruasi'],
+    wellnessNote: 'note b',
+    gmapsQuery: 'beta terdekat',
+  },
 ];
 
 function wrapper({ children }: { children: ReactNode }) {
@@ -1547,9 +1884,7 @@ describe('App', () => {
   it('spins, shows a result, and records history on maps commit', async () => {
     vi.spyOn(window, 'open').mockImplementation(() => null);
     render(<App />, { wrapper });
-    await waitFor(() =>
-      expect(screen.getByRole('button', { name: /putar/i })).toBeEnabled()
-    );
+    await waitFor(() => expect(screen.getByRole('button', { name: /putar/i })).toBeEnabled());
 
     vi.useFakeTimers();
     act(() => {
@@ -1563,9 +1898,7 @@ describe('App', () => {
     const cta = await screen.findByRole('button', { name: /google maps/i });
     await userEvent.click(cta);
 
-    await waitFor(() =>
-      expect(screen.getByText(/Riwayat Pilihan \(1\)/i)).toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.getByText(/Riwayat Pilihan \(1\)/i)).toBeInTheDocument());
   });
 });
 ```
@@ -1621,12 +1954,7 @@ export default function App() {
       )}
 
       {foods && (
-        <SpinnerWheel
-          items={foods}
-          phase={phase}
-          lastResultId={result?.id}
-          onResult={setResult}
-        />
+        <SpinnerWheel items={foods} phase={phase} lastResultId={result?.id} onResult={setResult} />
       )}
 
       {result && <ResultCard item={result} seenBefore={seenBefore} onCommit={handleCommit} />}
@@ -1659,10 +1987,12 @@ git commit -m "feat: compose app with tabs, wheel, result, and history"
 ### Task 13: PWA configuration
 
 **Files:**
+
 - Modify: `vite.config.ts` (add `VitePWA` plugin)
 - Create: `public/pwa-192x192.png`, `public/pwa-512x512.png`, `public/favicon.ico` (placeholder icons acceptable for MVP)
 
 **Interfaces:**
+
 - Consumes: nothing new.
 - Produces: an installable, offline-capable PWA build.
 
@@ -1708,6 +2038,7 @@ export default defineConfig({
 - [ ] **Step 2: Add placeholder icons**
 
 Run (creates simple solid PNGs via ImageMagick if available; otherwise drop any PNGs of the right size into `public/`):
+
 ```bash
 command -v magick >/dev/null 2>&1 && {
   magick -size 192x192 xc:#1e293b public/pwa-192x192.png
@@ -1715,6 +2046,7 @@ command -v magick >/dev/null 2>&1 && {
   magick -size 32x32 xc:#1e293b public/favicon.ico
 } || echo "Add public/pwa-192x192.png, public/pwa-512x512.png, public/favicon.ico manually"
 ```
+
 Expected: three icon files exist in `public/`.
 
 - [ ] **Step 3: Build and confirm the service worker is generated**
@@ -1739,10 +2071,12 @@ git commit -m "feat: configure vite-plugin-pwa for offline-first install"
 ### Task 14: Manual verification and deploy config
 
 **Files:**
+
 - Create: `vercel.json` (SPA rewrite; use if deploying to Vercel)
 - Create: `README.md` (run + deploy instructions)
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces: deploy configuration and docs. No code interface.
 
@@ -1750,6 +2084,7 @@ git commit -m "feat: configure vite-plugin-pwa for offline-first install"
 
 Run: `pnpm build && pnpm preview`
 Then in a browser at the shown localhost URL, confirm:
+
 - Header and 4 phase tabs render; active tab is bold.
 - Clicking "PUTAR" spins and reveals a result card with a wellness note and the "bukan saran medis" disclaimer.
 - Switching phase clears the result; spinning again never immediately repeats the last result.
@@ -1766,7 +2101,7 @@ Then in a browser at the shown localhost URL, confirm:
 
 - [ ] **Step 3: Create `README.md`**
 
-```markdown
+````markdown
 # Terserah! — Cycle-Synced Food Decider (PWA)
 
 Mobile-first PWA to break the "terserah" deadlock: spin a wheel for a food
@@ -1782,6 +2117,7 @@ pnpm test         # run tests
 pnpm build    # type-check + production build
 pnpm preview  # preview the production build
 ```
+````
 
 ## Data
 
@@ -1792,14 +2128,15 @@ The catalog lives at `public/data/foods.json`. Every phase must have at least
 
 Static build (`dist/`). Deploy to Vercel or Netlify. `vercel.json` provides the
 SPA fallback rewrite. This is not medical advice.
-```
+
+````
 
 - [ ] **Step 4: Commit**
 
 ```bash
 git add -A
 git commit -m "chore: add deploy config and readme"
-```
+````
 
 ---
 
