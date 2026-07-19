@@ -23,15 +23,12 @@ export function buildShareText(item: FoodItem, phase: MenstrualPhase): string {
 export async function shareResult(item: FoodItem, phase: MenstrualPhase): Promise<void> {
   const text = buildShareText(item, phase);
 
-  if (typeof navigator !== 'undefined' && navigator.share) {
-    try {
-      await navigator.share({ title: 'Rekomendasi Makanan Hari Ini', text });
-    } catch {
-      // User cancelled (AbortError) or share failed — non-fatal, swallow silently.
-    }
-    return;
-  }
-
+  // Always open the WhatsApp deep link directly rather than trying navigator.share
+  // first: on desktop (macOS/Windows), the native share sheet never lists WhatsApp
+  // Desktop as a target (it doesn't register as an OS share extension), so routing
+  // through navigator.share there silently produces a share sheet without the one
+  // app users actually want. Going straight to WhatsApp works consistently on both
+  // desktop and mobile.
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
   window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 }
