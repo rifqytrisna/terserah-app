@@ -22,6 +22,7 @@ Apakah percakapan di atas terdengar familiar? Apakah Anda lelah menghabiskan wak
 - **🎰 Spinner Anti-Dilema:** Masukkan opsi, putar rodanya, dan biarkan takdir yang menentukan menu makan Anda. Pasangan Anda tidak bisa mendebat hasil roda keberuntungan ini (secara hukum tak tertulis).
 - **🩸 Cycle-Synced Recommendations:** Fitur rahasia penunjang kedamaian rumah tangga. Rekomendasi makanan akan disaring secara otomatis berdasarkan 4 fase siklus menstruasi wanita (_Menstruasi, Folikular, Ovulasi, atau Luteal_). Karena hormon yang berbeda butuh asupan nutrisi yang berbeda!
 - **📍 GMaps Deep Link Integration:** Begitu roda berhenti di suatu makanan, aplikasi ini langsung menyediakan tombol jalan pintas (_deep link_) untuk mencari warung/restoran terdekat di Google Maps secara dinamis.
+- **💬 Bagikan Hasil ke Pasangan (WhatsApp):** Hasil putaran bisa langsung dikirim ke pasangan lewat WhatsApp dengan satu tombol — pesan otomatis disusun sesuai fase siklus yang aktif (emoji dan gaya bahasa beda-beda per fase), lengkap dengan link Google Maps-nya. Jadi pasangan Anda tinggal klik dan berangkat, tanpa drama "terserah" jilid dua.
 - **📱 PWA Ready (Installable):** Bisa langsung disimpan di _home screen_ HP pasangan Anda tanpa menonjolkan address bar browser. Buka instan, putar, makan.
 
 ---
@@ -93,6 +94,7 @@ To verify the app works end-to-end:
    - Clicking "PUTAR" spins and reveals a result card with a wellness note and the "bukan saran medis" disclaimer.
    - Switching phase clears the result; spinning again never immediately repeats the last result.
    - Tapping the Maps CTA opens Google Maps in a new tab AND the history count increments; a repeat result shows the "Sudah pernah" badge.
+   - Tapping "💬 Bagikan Hasil ke Pasangan" opens WhatsApp (`api.whatsapp.com`) in a new tab with a pre-filled, phase-specific message (food name + phase, bold, plus the Maps link). This does NOT affect the history count.
    - DevTools → Application shows a registered service worker and manifest; toggling "Offline" and reloading still loads the app and catalog.
 
 ## Deploy
