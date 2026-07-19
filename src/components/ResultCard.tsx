@@ -1,8 +1,10 @@
-import type { FoodItem } from '../types/food';
+import type { FoodItem, MenstrualPhase } from '../types/food';
 import { openGoogleMapsSearch } from '../lib/navigation';
+import { shareResult } from '../lib/share';
 
 export interface ResultCardProps {
   item: FoodItem;
+  phase: MenstrualPhase;
   seenBefore: boolean;
   onCommit: (item: FoodItem) => void;
 }
@@ -12,10 +14,14 @@ const TYPE_ICON: Record<FoodItem['type'], string> = {
   minuman: '🍷',
 };
 
-export default function ResultCard({ item, seenBefore, onCommit }: ResultCardProps) {
+export default function ResultCard({ item, phase, seenBefore, onCommit }: ResultCardProps) {
   function handleCommit() {
     onCommit(item);
     openGoogleMapsSearch(item.gmapsQuery);
+  }
+
+  function handleShare() {
+    void shareResult(item, phase);
   }
 
   return (
@@ -38,6 +44,12 @@ export default function ResultCard({ item, seenBefore, onCommit }: ResultCardPro
         className="mt-3 min-h-[54px] w-full rounded-xl bg-emerald-600 px-4 text-base font-bold text-white"
       >
         {`📍 Cari tempat terdekat di Google Maps`}
+      </button>
+      <button
+        onClick={handleShare}
+        className="mt-2 min-h-[54px] w-full rounded-xl border border-slate-700 bg-slate-800 px-4 text-base font-medium text-slate-100"
+      >
+        💬 Bagikan Hasil ke Pasangan
       </button>
     </div>
   );
