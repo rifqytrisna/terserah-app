@@ -44,7 +44,9 @@ export default function App() {
         <SpinnerWheel items={foods} phase={phase} lastResultId={result?.id} onResult={setResult} />
       )}
 
-      {result && <ResultCard item={result} seenBefore={seenBefore} onCommit={handleCommit} />}
+      {result && (
+        <ResultCard item={result} phase={phase} seenBefore={seenBefore} onCommit={handleCommit} />
+      )}
 
       <HistoryList entries={entries} />
     </div>
