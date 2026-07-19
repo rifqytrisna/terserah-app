@@ -48,18 +48,7 @@ describe('buildShareText', () => {
 });
 
 describe('shareResult', () => {
-  it('uses navigator.share when available and does not open a window', async () => {
-    const shareFn = stubShare(() => Promise.resolve());
-    const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
-
-    await shareResult(item, 'menstruasi');
-
-    expect(shareFn).toHaveBeenCalledTimes(1);
-    expect(shareFn.mock.calls[0][0]).toMatchObject({ text: buildShareText(item, 'menstruasi') });
-    expect(openSpy).not.toHaveBeenCalled();
-  });
-
-  it('falls back to a WhatsApp window when navigator.share is absent', async () => {
+  it('always opens a WhatsApp window with the correct url when navigator.share is absent', async () => {
     // navigator.share is undefined here (cleaned up in afterEach)
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
@@ -71,11 +60,19 @@ describe('shareResult', () => {
     expect(openSpy).toHaveBeenCalledWith(expectedUrl, '_blank', 'noopener,noreferrer');
   });
 
-  it('resolves without throwing when the user cancels the native share', async () => {
-    stubShare(() => Promise.reject(Object.assign(new Error('cancelled'), { name: 'AbortError' })));
+  it('always opens WhatsApp even when navigator.share is available, never calling native share', async () => {
+    // macOS's native share sheet (navigator.share) never lists WhatsApp Desktop as a
+    // target, since WhatsApp doesn't register as a macOS Share Extension. So this app
+    // always uses the WhatsApp deep link directly rather than the native share sheet.
+    const shareFn = stubShare(() => Promise.resolve());
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
-    await expect(shareResult(item, 'menstruasi')).resolves.toBeUndefined();
-    expect(openSpy).not.toHaveBeenCalled();
+    await shareResult(item, 'menstruasi');
+
+    expect(shareFn).not.toHaveBeenCalled();
+    const expectedUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
+      buildShareText(item, 'menstruasi')
+    )}`;
+    expect(openSpy).toHaveBeenCalledWith(expectedUrl, '_blank', 'noopener,noreferrer');
   });
 });
