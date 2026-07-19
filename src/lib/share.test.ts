@@ -19,7 +19,7 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-function stubShare(impl: () => Promise<void>) {
+function stubShare(impl: (data: ShareData) => Promise<void>) {
   const fn = vi.fn(impl);
   Object.defineProperty(navigator, 'share', { configurable: true, writable: true, value: fn });
   return fn;
